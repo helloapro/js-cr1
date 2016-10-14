@@ -15,7 +15,7 @@
         <h1>Stalk and Reap!</h1>
         <p>In a world where stalking is easy, we've made it even easier. Me and all my classmates have made somewhat-to-fully functioning apps for you to stalk a github user by their username and then reap their repos!</p>
         <form class="form-group" id="user-search">
-          <label for="searchInput">Enter a github user's username:</label>
+          <label for="searchInput">Search for a github user:</label>
           <input type="text" class="form-control" id="searchInput" name="searchInput" required>
           <br>
           <button type="submit" class="btn btn-success">Stalk</button>
@@ -23,13 +23,17 @@
       </div>
 
       <div class="row">
-        <div class="col-md-4 well">
+        <div class="col-sm-4 well">
           <h3>User's Public Repos:</h3>
           <div id="userRepos">
           </div>
+
+          <h4>Find who you're looking for?</h4>
+          <div id="userResults">
+          </div>
         </div>
 
-        <div class="col-md-8 well">
+        <div class="col-sm-8 well">
           <h2 id="login">Github User:</h2>
           <div id="userProfile">
           </div>
