@@ -26,7 +26,7 @@ This application allows users to look up a github username and view a list of th
 
 ## Known Bugs ##
 
-There are no known bugs at this time.
+The click function is causing the user profile in the larger well on the main page to populate on a user selection when the search results are greater than one. Will fix this later.
 
 ## Languages/Technologies Used ##
 

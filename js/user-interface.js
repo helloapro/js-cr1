@@ -5,6 +5,9 @@ function userClick(){
     $("#userRepos").empty();
     $("#login").empty();
     $("#userProfile").empty();
+    $("#userResultsHeader").hide();
+    $("#userReposHeader").show();
+    $("#login").show();
     var user = $(this).find("span.login").text();
     $.get("https://api.github.com/users/" + user + "?access_token=" + apiKey).then(function(response){
         var bio;
