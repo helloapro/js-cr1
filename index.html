@@ -13,20 +13,26 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Stalk and Reap!</h1>
-        <p>In a world where stalking is easy, we've made it even easier. Me and all my classmates have made half-to-fully functioning apps for you to stalk a github user by their username and then reap their repositories!</p>
+        <p>In a world where stalking is easy, we've made it even easier. Me and all my classmates have made somewhat-to-fully functioning apps for you to stalk a github user by their username and then reap their repos!</p>
         <form class="form-group" id="user-search">
           <label for="searchInput">Enter a github user's username:</label>
-          <input type="text" class="form-control" id="searchInput" name="searchInput">
+          <input type="text" class="form-control" id="searchInput" name="searchInput" required>
           <br>
           <button type="submit" class="btn btn-success">Stalk</button>
         </form>
       </div>
 
       <div class="row">
-        <div class="col-md-4 well" id="userRepos">
+        <div class="col-md-4 well">
+          <h3>User's Public Repos:</h3>
+          <div id="userRepos">
+          </div>
         </div>
 
-        <div class="col-md-8 well" id="userProfile">
+        <div class="col-md-8 well">
+          <h2 id="login">Github User:</h2>
+          <div id="userProfile">
+          </div>
         </div>
 
 
