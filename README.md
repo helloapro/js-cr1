@@ -26,7 +26,7 @@ This application allows users to look up a github username and view a list of th
 
 ## Known Bugs ##
 
-Some of the github project URLs overflow outside of the well boundary depending on the window size.
+No catch-all to replace 'null' results for user's real name, company, location, and website on individual user view.
 
 ## Languages/Technologies Used ##
 
