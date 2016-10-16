@@ -15,7 +15,18 @@ $(function(){
       console.log(JSON.stringify(response));
       var forLoop = response.items.length > 10 ? 10 : response.items.length;
       for(var i=0; i < forLoop; i++){
-        $("#userResults").append("<div class='well user'><img class='img-responsive initial-imgs' src='" + response.items[i].avatar_url + "'><span class='login'>" + response.items[i].login + "</span></div>");
+        $("#userResults").append("<div class='row'>"+
+          "<div class='col-sm-3 col-md-3'>"+
+            "<div class='thumbnail user'>"+
+              "<img class='img-responsive' src='" + response.items[i].avatar_url + "'>" +
+              "<div class='caption'>" +
+                "<h3><span class='login'>" + response.items[i].login + "</span></h3><p><a href='#' class='btn btn-primary' role='button'>That's mah homie - go to hims/hers!</a></p>"+
+              "</div>"+
+            "</div>"+
+          "</div>"+
+        "</div>");
+
+        // <div class='well user'><img class='img-responsive initial-imgs' src='" + response.items[i].avatar_url + "'><span class='login'>" + response.items[i].login + "</span></div>"
       }
     }).then(function(){
       $(".user").click(userClick);
