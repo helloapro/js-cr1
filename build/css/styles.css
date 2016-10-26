@@ -1,0 +1,15 @@
+ul {
+  list-style-type: none; }
+
+.profile-img {
+  display: block;
+  margin: auto;
+  height: 25em; }
+
+.well {
+  text-align: center; }
+
+#login, #userReposHeader, #userResultsHeader {
+  display: none; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGVzLmNzcyIsInNvdXJjZXMiOlsic3R5bGVzLnNjc3MiXSwic291cmNlc0NvbnRlbnQiOlsidWwge1xuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XG59XG5cbi5wcm9maWxlLWltZyB7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW46IGF1dG87XG4gIGhlaWdodDogMjVlbTtcbn1cblxuLndlbGx7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuI2xvZ2luLCAjdXNlclJlcG9zSGVhZGVyLCAjdXNlclJlc3VsdHNIZWFkZXIge1xuICBkaXNwbGF5OiBub25lO1xufVxuIl0sIm1hcHBpbmdzIjoiQUFBQSxBQUFBLEVBQUUsQ0FBQztFQUNELGVBQWUsRUFBRSxJQUFLLEdBQ3ZCOztBQUVELEFBQUEsWUFBWSxDQUFDO0VBQ1gsT0FBTyxFQUFFLEtBQU07RUFDZixNQUFNLEVBQUUsSUFBSztFQUNiLE1BQU0sRUFBRSxJQUFLLEdBQ2Q7O0FBRUQsQUFBQSxLQUFLLENBQUE7RUFDSCxVQUFVLEVBQUUsTUFBTyxHQUNwQjs7QUFFRCxBQUFBLE1BQU0sRUFBRSxBQUFBLGdCQUFnQixFQUFFLEFBQUEsa0JBQWtCLENBQUM7RUFDM0MsT0FBTyxFQUFFLElBQUssR0FDZiIsIm5hbWVzIjpbXX0= */
