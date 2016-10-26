@@ -1,1 +1,87 @@
-!function e(s,r,i){function o(t,a){if(!r[t]){if(!s[t]){var l="function"==typeof require&&require;if(!a&&l)return l(t,!0);if(n)return n(t,!0);var u=new Error("Cannot find module '"+t+"'");throw u.code="MODULE_NOT_FOUND",u}var c=r[t]={exports:{}};s[t][0].call(c.exports,function(e){var r=s[t][1][e];return o(r?r:e)},c,c.exports,e,s,r,i)}return r[t].exports}for(var n="function"==typeof require&&require,t=0;t<i.length;t++)o(i[t]);return o}({1:[function(e,s,r){r.apiKey="a50f1ed8b4d60f39197740efb3ef0f8b5d72fd6e"},{}],2:[function(e,s,r){function i(){$("#userResults").empty(),$("#userRepos").empty(),$("#login").empty(),$("#userProfile").empty(),$("#userResultsHeader").hide(),$("#userReposHeader").show(),$("#login").show();var e=$(this).find("span.login").text();$.get("https://api.github.com/users/"+e+"?access_token="+o).then(function(e){console.log(JSON.stringify(e));var s;s=null===e.bio?"This user has not set up their bio!":e.bio,$("#login").append("Github User: "+e.login),$("#userProfile").append("<img class='img-responsive profile-img' src='"+e.avatar_url+"'><h4>"+e.name+"</h4><div class='row'><div class='col-sm-4'>company: "+e.company+"</div><div class='col-sm-4'>location: "+e.location+"</div><div class='col-sm-4'>website: <a href='"+e.blog+"'>"+e.blog+"</div></div><br><p>User bio: "+s+"</p>")}).fail(function(e){console.log(e.responseJSON.message)}),$.get("https://api.github.com/users/"+e+"/repos?access_token="+o).then(function(e){for(var s=0;s<e.length;s++){var r;r=null===e[s].description?"The user did not set a description :-(":e[s].description,$("#userRepos").append("<div class='well'><a href="+e[s].html_url+">"+e[s].html_url+"</a><br>"+r+"</div>")}}).fail(function(e){console.log(e.responseJSON.message)})}var o=e("./../.env").apiKey;$(function(){$("#user-search").submit(function(e){e.preventDefault(),$("#userResults").empty(),$("#userRepos").empty(),$("#login").empty(),$("#userProfile").empty(),$("#userReposHeader").hide(),$("#login").hide(),$("#userResultsHeader").show();var s=$("#searchInput").val();$.get("https://api.github.com/search/users?q="+s+"+repos:%3E10").then(function(e){for(var s=e.items.length>24?24:e.items.length,r=0;r<s;r++)$("#userResults").append("<div class='col-sm-3 col-md-3'><div class='thumbnail user'><img class='img-responsive' src='"+e.items[r].avatar_url+"'><div class='caption'><h3><span class='login'>"+e.items[r].login+"</span></h3><p><a href='#' class='btn btn-primary btn-block' role='button'>That's mah homie!</a></p></div></div></div>")}).then(function(){$(".user").click(i)}).fail(function(e){alert("Something errored, or no results returned for your search. Try again!"),console.log(e.responseJSON.message)})})});var o=e("./../.env").apiKey},{"./../.env":1}]},{},[2]);
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+exports.apiKey = "a50f1ed8b4d60f39197740efb3ef0f8b5d72fd6e";
+
+},{}],2:[function(require,module,exports){
+var apiKey = require('./../.env').apiKey;
+
+$(function(){
+  $("#user-search").submit(function(event){
+    event.preventDefault();
+    $("#userResults").empty();
+    $("#userRepos").empty();
+    $("#login").empty();
+    $("#userProfile").empty();
+    $("#userReposHeader").hide();
+    $("#login").hide();
+    $("#userResultsHeader").show();
+    var searchInput = $("#searchInput").val();
+    $.get("https://api.github.com/search/users?q=" + searchInput + "+repos:%3E10").then(function(response){
+      var forLoop = response.items.length > 24 ? 24 : response.items.length;
+      for(var i=0; i < forLoop; i++){
+        $("#userResults").append("<div class='col-sm-3 col-md-3'>"+
+            "<div class='thumbnail user'>"+
+              "<img class='img-responsive' src='" + response.items[i].avatar_url + "'>" +
+              "<div class='caption'>" +
+                "<h3><span class='login'>" + response.items[i].login + "</span></h3><p><a href='#' class='btn btn-primary btn-block' role='button'>That's mah homie!</a></p>"+
+              "</div>"+
+            "</div>"+
+          "</div>");
+      }
+    }).then(function(){
+      $(".user").click(userClick);
+    }).fail(function(error){
+      alert("Something errored, or no results returned for your search. Try again!");
+      console.log(error.responseJSON.message);
+    });
+
+  });
+});
+
+var apiKey = require('./../.env').apiKey;
+
+function userClick(){
+    $("#userResults").empty();
+    $("#userRepos").empty();
+    $("#login").empty();
+    $("#userProfile").empty();
+    $("#userResultsHeader").hide();
+    $("#userReposHeader").show();
+    $("#login").show();
+    var user = $(this).find("span.login").text();
+    $.get("https://api.github.com/users/" + user + "?access_token=" + apiKey).then(function(response){
+      console.log(JSON.stringify(response));
+      var bio;
+      if(response.bio === null){
+        bio = "This user has not set up their bio!";
+      } else {
+        bio = response.bio;
+      }
+      $("#login").append("Github User: " + response.login);
+      $("#userProfile").append("<img class='img-responsive profile-img' src='" + response.avatar_url + "'><h4>" + response.name + "</h4>" +
+      "<div class='row'>" +
+        "<div class='col-sm-4'>company: " + response.company + "</div>" +
+        "<div class='col-sm-4'>location: " + response.location + "</div>" +
+        "<div class='col-sm-4'>website: <a href='" + response.blog + "'>" + response.blog + "</div></div><br>" +
+      "<p>User bio: " + bio + "</p>");
+    }).fail(function(error){
+      console.log(error.responseJSON.message);
+    });
+
+    $.get("https://api.github.com/users/" + user + "/repos?access_token=" + apiKey).then(function(response){
+      for(var i=0; i < response.length; i++){
+        var description;
+        if(response[i].description === null){
+          description = "The user did not set a description :-(";
+        } else {
+          description = response[i].description;
+        }
+
+        $("#userRepos").append("<div class='well'><a href=" + response[i].html_url + ">" + response[i].html_url + "</a><br>" + description + "</div>");
+      }
+    }).fail(function(error){
+      console.log(error.responseJSON.message);
+    });
+
+}
+
+},{"./../.env":1}]},{},[2]);
