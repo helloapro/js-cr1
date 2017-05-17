@@ -8,7 +8,7 @@
 
 This application allows users to look up a github username and view a list of that user's public repositories as well as descriptions of their projects.
 
-https://helloapro.github.io/js-cr1
+https://hey-ape.github.io/js-cr1
 
 ## User Setup/Installation Instructions ##
 
