@@ -1,8 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-exports.apiKey = "a50f1ed8b4d60f39197740efb3ef0f8b5d72fd6e";
-
-},{}],2:[function(require,module,exports){
-var apiKey = require('./../.env').apiKey;
+//var apiKey = require('./../.env').apiKey;
 
 $(function(){
   $("#user-search").submit(function(event){
@@ -37,7 +34,7 @@ $(function(){
   });
 });
 
-var apiKey = require('./../.env').apiKey;
+//var apiKey = require('./../.env').apiKey;
 
 function userClick(){
     $("#userResults").empty();
@@ -48,7 +45,8 @@ function userClick(){
     $("#userReposHeader").show();
     $("#login").show();
     var user = $(this).find("span.login").text();
-    $.get("https://api.github.com/users/" + user + "?access_token=" + apiKey).then(function(response){
+    //$.get("https://api.github.com/users/" + user + "?access_token=" + apiKey).then(function(response){
+    $.get("https://api.github.com/users/" + user).then(function(response){
       console.log(JSON.stringify(response));
       var bio;
       if(response.bio === null){
@@ -67,21 +65,23 @@ function userClick(){
       console.log(error.responseJSON.message);
     });
 
-    $.get("https://api.github.com/users/" + user + "/repos?access_token=" + apiKey).then(function(response){
-      for(var i=0; i < response.length; i++){
-        var description;
-        if(response[i].description === null){
-          description = "The user did not set a description :-(";
-        } else {
-          description = response[i].description;
-        }
+    //$.get("https://api.github.com/users/" + user + "/repos?access_token=" + apiKey).then(function(response){
+    $.get("https://api.github.com/users/" + user + "/repos").then(function(response){
+        for(var i=0; i < response.length; i++){
+                var description;
+                if(response[i].description === null){
+                    description = "The user did not set a description :-(";
+                } else {
+                    description = response[i].description;
+                }
 
-        $("#userRepos").append("<div class='well'><a href=" + response[i].html_url + ">" + response[i].html_url + "</a><br>" + description + "</div>");
-      }
-    }).fail(function(error){
-      console.log(error.responseJSON.message);
-    });
+                $("#userRepos").append("<div class='well'><a href=" + response[i].html_url + ">" + response[i].html_url + "</a><br>" + description + "</div>");
+            }
+        }).fail(function(error){
+            console.log(error.responseJSON.message);
+        });
+    }
 
-}
 
-},{"./../.env":1}]},{},[2]);
+
+},{}]},{},[1]);
